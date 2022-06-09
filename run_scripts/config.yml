@@ -1,0 +1,24 @@
+# Use "nnictl create --config config.yml" to launch this experiment.
+experimentName: mixNhits_PeMSD8
+
+searchSpaceFile: search_space_short.json
+useAnnotation: false
+trialCommand: python3 run_scripts/run_gp0_traffic.py  # NOTE: change "python3" to "python" if you are using Windows
+trialCodeDirectory: ..
+trialGpuNumber: 1
+trialConcurrency: 1
+maxTrialNumber: 30
+maxExperimentDuration: 6h
+tuner:
+  name: TPE #GridSearch
+  classArgs:
+    optimize_mode: minimize
+assessor:
+  name: Medianstop
+  classArgs:
+    optimize_mode: minimize
+    start_step: 4
+trainingService:
+  platform: local
+  useActiveGpu: true
+  maxTrialNumberPerGpu: 2
