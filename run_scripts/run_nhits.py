@@ -14,8 +14,6 @@ from nni.utils import merge_parameter
 
 sys.path.append('./')
 
-from model import nhits_mv
-# from model.nhits_mv import NHITS
 from model.nhits import NHITS
 from data.TS import TSDataModule
 from utils.callbacks import LogMetricsCallback
@@ -23,8 +21,8 @@ from utils.callbacks import LogMetricsCallback
 
 exp_df = pd.DataFrame.from_records(
     data=[
-        ("PeMSD8", 12, [1, 1, 1], [12, 6, 1]),
-        # ("TrafficL", 96, [1, 1, 1], [24, 12, 1]),
+        # ("PeMSD8", 12, [1, 1, 1], [12, 6, 1]),
+        ("TrafficL", 96, [1, 1, 1], [24, 12, 1]),
         # ("TrafficL", 192, [2, 2, 2], [60, 8, 1]),
         # ("ECL", 96, [1, 1, 1], [60, 8, 1]),
         # ("ECL", 192, [16, 8, 1], [60, 8, 1]),
@@ -39,9 +37,6 @@ def main_NHI(*args):
         n_time_in = n_time_out*5  # LTSF/PeMS dataset: 5/1
         dm = TSDataModule(dataset, n_time_in, n_time_out, hbstep=1,
                           mode="M", bs=1024)
-        if dataset == "PeMSD8":
-            adj_mx = torch.from_numpy(np.load('data/adj_08.npy'))
-            # nhits_mv.adj_mx = adj_mx
         
         nhits_kwargs = dict(
             n_pool_kernel_size=n_pool_kernel_size, n_freq_downsample=n_freq_downsample)

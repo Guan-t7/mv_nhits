@@ -20,15 +20,17 @@ from utils.callbacks import LogMetricsCallback
 
 exp_df = pd.DataFrame.from_records(
     data=[
-        ("PeMSD8", 12, 12, [1, 1, 1], [4, 2, 1]),
+        # ("PeMSD8", 12, 12, [1, 1, 1], [4, 2, 1]),
         # ("TrafficL", 5*96, 96, [1, 1, 1], [24, 12, 1]),
-        # ("traffic", 7*24, 24, [8, 4, 1], [12, 6, 1]),
+        ("traffic", 7*24, 24, [8, 4, 1], [12, 6, 1]),
+        # ("electricity", 7*24, 24, [8, 4, 1], [12, 6, 1]),
     ], columns=['dataset', 'history', 'horizon', 'pool', 'freq']
 )
 n_series_dict = {
     "TrafficL": 862,
     "traffic": 963,
     "PeMSD8": 170,
+    "electricity": 370,
 }
 
 
